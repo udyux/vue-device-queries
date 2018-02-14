@@ -1,6 +1,7 @@
 # Vue device-queries
 
 > Reactive Vue.js media-queries without resize event listeners using `window.matchMedia`. Includes a polyfill that uses resize events when browser support is missing.
+> [See it in action](https://codesandbox.io/s/pkzopyr07q)
 
 ## Usage
 

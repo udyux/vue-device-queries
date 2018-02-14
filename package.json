@@ -1,10 +1,18 @@
 {
   "name": "vue-device-query",
   "version": "1.0.0",
-  "private": true,
   "description": "VueJS plugin that adds reactive CSS based media-queries to your component instances without resize listeners.",
-  "main": "index.js",
-  "scripts": {},
+  "main": "dist/portal-vue.js",
+  "files": [
+    "dist/portal-vue.js",
+    "dist/portal-vue.min.js",
+    "dist/portal-vue.js.map",
+    "src"
+  ],
+  "scripts": {
+    "dev": "gulp dev",
+    "build": "gulp build"
+  },
   "keywords": [
     "Vue",
     "VueJS",
@@ -14,5 +22,25 @@
     "match-media"
   ],
   "author": "Nicolas Udy <dev@udy.io>",
-  "license": "MIT"
+  "license": "MIT",
+  "repository": "git@github.com:udyux/vue-device-queries.git",
+  "devDependencies": {
+    "babel-preset-es2015-rollup": "^3.0.0",
+    "eslint-config-standard": "^11.0.0-beta.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-node": "^6.0.0",
+    "eslint-plugin-promise": "^3.6.0",
+    "eslint-plugin-standard": "^3.0.1",
+    "gulp": "^3.9.1",
+    "gulp-better-rollup": "^3.0.0",
+    "gulp-eslint": "^4.0.2",
+    "gulp-plumber": "^1.2.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-sourcemaps": "^2.6.4",
+    "gulp-uglify": "^3.0.0",
+    "rollup-plugin-babel": "^3.0.3",
+    "rollup-plugin-commonjs": "^8.3.0",
+    "rollup-plugin-node-resolve": "^3.0.3"
+  },
+  "dependencies": {}
 }
