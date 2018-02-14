@@ -1,11 +1,18 @@
 {
   "name": "vue-device-query",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "description": "VueJS plugin that adds reactive CSS based media-queries to your component instances without resize listeners.",
   "main": "index.js",
   "scripts": {},
-  "keywords": ["Vue", "VueJS", "media-query", "device", "mq", "match-media"],
+  "keywords": [
+    "Vue",
+    "VueJS",
+    "media-query",
+    "device",
+    "mq",
+    "match-media"
+  ],
   "author": "Nicolas Udy <dev@udy.io>",
   "license": "MIT"
 }
