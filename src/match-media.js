@@ -34,20 +34,16 @@ const matchMediaFallback = () => {
     }, 60)
   })
 
-  return (queryString) => {
+  return function(queryString) {
     const query = parseQuery(queryString)
-    const matcher = {
-      get matches() {
-        return query()
-      }
-    }
 
     // return object must replicate native matchMedia API
     return {
-      ...matcher,
-      addListener(cb) {
-        const handler = () => cb(matcher)
-        listeners.push(handler)
+      get matches() {
+        return query()
+      },
+      addListener(responder) {
+        listeners.push(() => responder(this))
       }
     }
   }

@@ -20,6 +20,20 @@
     "mq",
     "match-media"
   ],
+  "eslintConfig": {
+    "extends": "standard",
+    "env": {
+      "browser": true
+    },
+    "rules": {
+      "space-before-function-paren": 0,
+      "object-property-newline": 0,
+      "arrow-parens": 0,
+      "new-cap": 0,
+      "no-eval": 0,
+      "semi": 0
+    }
+  },
   "author": "Nicolas Udy <dev@udy.io>",
   "license": "MIT",
   "repository": "git@github.com:udyux/vue-device-queries.git",
@@ -41,5 +55,7 @@
     "rollup-plugin-commonjs": "^8.3.0",
     "rollup-plugin-node-resolve": "^3.0.3"
   },
-  "dependencies": {}
+  "dependencies": {
+    "babel-core": "^6.26.0"
+  }
 }
