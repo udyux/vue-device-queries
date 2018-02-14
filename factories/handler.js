@@ -1,17 +1,13 @@
 export default (feature, value, device) => {
   if (feature === 'orientation') return () => value === device.orientation
 
-  let [prop, limit] = feature
-    .split('-')
-    .reverse()
-
-  const operand = (!limit) ? '=='
-    : (limit === 'min') ? '<'
-    : '>'
+  let [prop, limit] = feature.split('-').reverse()
 
   const parseValue = (~value.indexOf('em'))
     ? () => parseFloat(value) * device.fontSize
     : () => parseFloat(value)
 
-  return () => eval(parseValue() + operand + device[prop])
+  return (!limit) ? () => parseValue() === device[prop]
+    : (limit === 'min') ? () => parseValue() < device[prop]
+    : () => parseValue() > device[prop]
 }
