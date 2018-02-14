@@ -7,7 +7,7 @@
 
 > Requires Vue.js 2.x
 
-### Install
+### Install
 
 ```bash
 npm i vue-device-queries
