@@ -5,7 +5,7 @@
 
 ## Usage
 
-> Requires Vue.js 2+
+> Requires Vue.js 2.x
 
 ### Install
 
