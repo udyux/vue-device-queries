@@ -1,6 +1,6 @@
 {
   "name": "vue-device-queries",
-  "version": "1.1.0",
+  "version": "1.0.4",
   "description": "VueJS plugin that adds reactive CSS based media-queries to your component instances without resize listeners.",
   "main": "dist/vue-device-queries.js",
   "files": [
