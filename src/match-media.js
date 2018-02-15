@@ -1,4 +1,5 @@
-import { createDevice, createHandler } from './factories'
+import createDevice from './device'
+import createHandler from './handler'
 
 // match media fallback using resize event
 const matchMediaFallback = () => {

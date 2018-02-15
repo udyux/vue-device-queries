@@ -3,62 +3,57 @@ const uglify = require('gulp-uglify')
 const eslint = require('gulp-eslint')
 const rename = require('gulp-rename')
 const plumber = require('gulp-plumber')
-const babel = require('rollup-plugin-babel')
 const rollup = require('gulp-better-rollup')
 const sourcemaps = require('gulp-sourcemaps')
-const cjsResolve = require('rollup-plugin-commonjs')
-const nodeResolve = require('rollup-plugin-node-resolve')
+const version = require('./package.json').version
+
+const plugins = [
+	require('rollup-plugin-commonjs')(),
+	require('rollup-plugin-node-resolve')({ module: true }),
+	require('rollup-plugin-babel')({ presets: ['es2015-rollup'] })
+]
 
 const config = {
-  src: 'src/*.js',
-  dist: 'dist',
+  entry: 'src/index.js',
+	output: 'vue-device-queries',
+	distFolder: 'dist',
 	watch: 'src/**/*.js',
 	eslint: { fix: true },
-	babel: { presets: ['es2015-rollup'] }
+	rollup: {
+		format: 'umd',
+		name: 'VueDeviceQueries',
+		banner: `/*! portal-vue v${version} | Licence: MIT (c) Nicolas Udy */`
+	}
 }
 
+// dev build
 gulp.task('js', () =>
-	gulp.src(config.src)
+	gulp.src(config.entry)
 		.pipe(plumber(function(e) {
 			console.log(e)
 			this.emit('end')
 		}))
+		.pipe(eslint(config.eslint))
+		.pipe(eslint.format())
 		.pipe(sourcemaps.init())
-		.pipe(eslint(config.eslint))
-		.pipe(eslint.format())
-		.pipe(rollup({
-			plugins: [
-				cjsResolve(),
-				nodeResolve(),
-				babel(config.babel)
-			]
-		}, 'iife'))
-		.pipe(sourcemaps.write())
+		.pipe(rollup({ plugins }, config.rollup))
+		.pipe(sourcemaps.write('./'))
 		.pipe(rename({
 			dirname: '',
-			basename: 'vue-device-queries'
+			basename: config.output
 		}))
-		.pipe(gulp.dest(config.dist)))
+		.pipe(gulp.dest(config.distFolder)))
 
+// production build
 gulp.task('build', ['js'], () =>
-	gulp.src(config.src)
-		.pipe(eslint(config.eslint))
-		.pipe(eslint.format())
-		.pipe(rollup({
-			plugins: [
-				cjsResolve(),
-				nodeResolve(),
-				babel(config.babel)
-			]
-		}, 'iife'))
-		.pipe(uglify())
-		.pipe(rename({
-			dirname: '',
-			basename: 'vue-device-queries',
-			suffix: '.min'
+	gulp.src(`${config.distFolder}/${config.output}.js`)
+		.pipe(uglify({
+			output: { comments: /^\!/ }
 		}))
-		.pipe(gulp.dest(config.dist)))
+		.pipe(rename({ suffix: '.min' }))
+		.pipe(gulp.dest(config.distFolder)))
 
+// dev watch task
 gulp.task('dev', ['js'], () => {
 	gulp.watch(config.watch, ['js'])
 })
