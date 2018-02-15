@@ -21,8 +21,8 @@ const config = {
 	eslint: { fix: true },
 	rollup: {
 		format: 'umd',
-		name: 'VueDeviceQueries',
-		banner: `/*! portal-vue v${version} | Licence: MIT (c) Nicolas Udy */`
+		name: 'DeviceQueries',
+		banner: `/*! vue-device-queries v${version} | Licence: MIT (c) Nicolas Udy */`
 	}
 }
 
@@ -33,24 +33,24 @@ gulp.task('js', () =>
 			console.log(e)
 			this.emit('end')
 		}))
+		.pipe(rename({
+			dirname: '',
+			basename: config.output
+		}))
 		.pipe(eslint(config.eslint))
 		.pipe(eslint.format())
 		.pipe(sourcemaps.init())
 		.pipe(rollup({ plugins }, config.rollup))
 		.pipe(sourcemaps.write('./'))
-		.pipe(rename({
-			dirname: '',
-			basename: config.output
-		}))
 		.pipe(gulp.dest(config.distFolder)))
 
 // production build
 gulp.task('build', ['js'], () =>
 	gulp.src(`${config.distFolder}/${config.output}.js`)
+		.pipe(rename({ suffix: '.min' }))
 		.pipe(uglify({
 			output: { comments: /^\!/ }
 		}))
-		.pipe(rename({ suffix: '.min' }))
 		.pipe(gulp.dest(config.distFolder)))
 
 // dev watch task
