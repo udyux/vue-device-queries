@@ -33,14 +33,14 @@ gulp.task('js', () =>
 			console.log(e)
 			this.emit('end')
 		}))
-		.pipe(rename({
-			dirname: '',
-			basename: config.output
-		}))
 		.pipe(eslint(config.eslint))
 		.pipe(eslint.format())
 		.pipe(sourcemaps.init())
 		.pipe(rollup({ plugins }, config.rollup))
+		.pipe(rename({
+			dirname: '',
+			basename: config.output
+		}))
 		.pipe(sourcemaps.write('./'))
 		.pipe(gulp.dest(config.distFolder)))
 

@@ -1,8 +1,8 @@
-/*! portal-vue v1.0.7 | Licence: MIT (c) Nicolas Udy */
+/*! vue-device-queries v1.0.8 | Licence: MIT (c) Nicolas Udy */
 (function (global, factory) {
 	typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
-	typeof define === 'function' && define.amd ? define('VueDeviceQueries', factory) :
-	(global.VueDeviceQueries = factory());
+	typeof define === 'function' && define.amd ? define('DeviceQueries', factory) :
+	(global.DeviceQueries = factory());
 }(this, (function () { 'use strict';
 
 var createDevice = (function () {
@@ -343,4 +343,4 @@ return index;
 
 })));
 
-//# sourceMappingURL=index.js.map
+//# sourceMappingURL=vue-device-queries.js.map
