@@ -3,3 +3,4 @@ node-debug.log
 TODO.md
 yarn-error.log
 yarn.lock
+*.tgz
