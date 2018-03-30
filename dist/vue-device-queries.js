@@ -1,4 +1,4 @@
-/*! vue-device-queries v1.0.10 | Licence: MIT (c) Nicolas Udy */
+/*! vue-device-queries v1.0.11 | Licence: MIT (c) Nicolas Udy */
 (function (global, factory) {
 	typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
 	typeof define === 'function' && define.amd ? define('DeviceQueries', factory) :
